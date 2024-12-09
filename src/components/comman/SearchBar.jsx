@@ -3,6 +3,7 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation } from 'swiper/modules'; 
 import 'swiper/css';
 import 'swiper/css/navigation';
+import { Link } from 'react-router-dom';
 
 import img1 from '../../assets/nav-icons/1.jpg';
 import img2 from '../../assets/nav-icons/2.jpg';
@@ -37,30 +38,61 @@ import img30 from '../../assets/nav-icons/30.jpg';
 const SearchBar = () => {
  
   const navItems = [
-    img1, img2, img3, img4, img6, img7, img8, img9,
-    img10, img11, img12, img13, img14, img15, img16, img17,
-    img18, img19, img20, img21, img22, img23, img24, img25,
-    img26, img27, img28, img29, img30,
+    { img: img1, route: 'TreeHouses' },
+    { img: img2, route: 'Route2' },
+    { img: img3, route: 'Route3' },
+    { img: img4, route: 'Route4' },
+    { img: img6, route: 'Route6' },
+    { img: img7, route: 'Route7' },
+    { img: img8, route: 'Route8' },
+    { img: img9, route: 'Route9' },
+    { img: img10, route: 'Route10' },
+    { img: img11, route: 'Route11' },
+    { img: img12, route: 'Route12' },
+    { img: img13, route: 'Route13' },
+    { img: img14, route: 'Route14' },
+    { img: img15, route: 'Route15' },
+    { img: img16, route: 'Route16' },
+    { img: img17, route: 'Route17' },
+    { img: img18, route: 'Route18' },
+    { img: img19, route: 'Route19' },
+    { img: img20, route: 'Route20' },
+    { img: img21, route: 'Route21' },
+    { img: img22, route: 'Route22' },
+    { img: img23, route: 'Route23' },
+    { img: img24, route: 'Route24' },
+    { img: img25, route: 'Route25' },
+    { img: img26, route: 'Route26' },
+    { img: img27, route: 'Route27' },
+    { img: img28, route: 'Route28' },
+    { img: img29, route: 'Route29' },
+    { img: img30, route: 'Route30' }
   ];
+  
 
   return (
-    <div className="w-9/12  relative">
+    <div className="w-9/12 relative">
       <Swiper
-        spaceBetween={26}
-        slidesPerView={9}
+        spaceBetween={1}
+        slidesPerView={10}
         navigation 
         modules={[Navigation]}
+        className=''
       >
           
             {navItems.map((item, index) => (
-            <SwiperSlide key={index} >
+          <SwiperSlide key={index} >
+            <Link to={item.route}>
                 <img
-                src={item}
+                src={item.img}
+                
                 alt={`Nav Item ${index}`}
-                className="w-7 h-7 object-cover"
+                className="w-7 h-7 object-cover hover:cursor-pointer transition-all duration-200 hover:scale-110"
                 />
+            </Link>  
             </SwiperSlide>
             ))}
+           
 
       </Swiper>
 

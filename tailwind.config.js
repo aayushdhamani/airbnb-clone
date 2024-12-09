@@ -10,6 +10,9 @@ export default {
         poppins: ['Poppins', 'sans-serif'],
         roboto: ['Roboto', 'sans-serif'],
         openSans: ['Open Sans', 'sans-serif'],
+      },
+      colors:{
+        BgFooter:'#F7F7F7'
       }
     },
   },
