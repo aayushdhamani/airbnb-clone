@@ -13,7 +13,7 @@ const Home = () => {
   return (
     <div className='w-11/12 mx-auto my-8'>
       <SearchBar/>
-        <div className='flex flex-wrap mt-8 gap-6'>
+        <div className='flex flex-wrap mt-8 gap-6 '>
           {
             pathname==='/TreeHouses'? HomeCard?.map((card)=>(
               <Cards key={card.id} data={card}/>

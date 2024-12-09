@@ -74,10 +74,10 @@ const SearchBar = () => {
     <div className="w-9/12 relative">
       <Swiper
         spaceBetween={1}
-        slidesPerView={10}
+        slidesPerView={7}
         navigation 
         modules={[Navigation]}
-        className=''
+        className='w-[350px] sm:w-full'
       >
           
             {navItems.map((item, index) => (
