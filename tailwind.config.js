@@ -13,6 +13,7 @@ export default {
       },
       colors:{
         BgFooter:'#F7F7F7',
+        logoColor:'#FF385C'
       }
     },
   },

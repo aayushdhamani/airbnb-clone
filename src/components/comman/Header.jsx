@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
-import logo from '../../assets/logo.svg'
+import React, { useEffect, useState,useRef } from 'react';
+import airbnbLogo from '../../assets/airbnb-logo.svg'
+import airbnbHelpLogo from '../../assets/airbnbHelp.svg'
 import profile from '../../assets/profile.svg'
 import globe from '../../assets/globe.svg'
 import { GiHamburgerMenu } from "react-icons/gi";
@@ -8,18 +9,90 @@ import { FaSearch } from "react-icons/fa";
 import { Link,useLocation } from 'react-router-dom';
 
 const Header = () => {
+  const [headerHeight, setHeaderHeight] = useState(100); // Default height
+  const [scrollDirection, setScrollDirection] = useState("up");
+  const lastScrollY = useRef(0); // To store the last scroll position
+  const headerRef = useRef(null); // To reference the header element
  const location=useLocation();
+
+ console.log("headerHeight",headerHeight);
+ console.log("scrollDirection",scrollDirection);
+
+ useEffect(() => {
+  const handleScroll = () => {
+    const currentScrollY = window.scrollY;
+
+    // Determine scroll direction
+    if (currentScrollY > lastScrollY.current) {
+      setScrollDirection("down");
+      setHeaderHeight((prevHeight) => Math.max(prevHeight - 5, 50)); // Decrease height, min 50px
+    } else {
+      setScrollDirection("up");
+      setHeaderHeight((prevHeight) => Math.min(prevHeight + 5, 100)); // Increase height, max 100px
+    }
+
+    lastScrollY.current = currentScrollY; // Update the last scroll position
+  };
+
+  window.addEventListener("scroll", handleScroll);
+
+  return () => {
+    window.removeEventListener("scroll", handleScroll);
+  };
+}, []);
+
+useEffect(() => {
+  if (headerRef.current) {
+    const initialHeight = headerRef.current.getBoundingClientRect().height;
+    setHeaderHeight(initialHeight); // Set initial height dynamically
+  }
+}, []);
+ 
 
   return (
     <>
-      <div className="hidden sm:flex sm:justify-between sm:w-11/12 sm:mx-auto sm:p-4" >
-      <Link to="/"><img src={logo} alt="Airbnb logo" className='w-[100px] h-[30px] hover:cursor-pointer'/></Link>
-        <div className='flex gap-7 font-medium font-roboto text-[1rem] items-center hover:cursor-pointer'>
-                <p className='text-black '>Stays</p>
-                <p className='text-gray-500'>Experiences</p>
+      <div className="hidden sm:flex sm:justify-between sm:w-11/12 sm:mx-auto sm:p-4 bg-white sticky top-0 z-10"  ref={headerRef}>
+      <Link to="/"><div className='flex justify-center items-center text-xl '>
+       {
+        location.pathname==='/'?<>
+        <img src={airbnbLogo} alt="Airbnb logo" className='h-[35px] hover:cursor-pointer fill-logoColor'/>
+        <p className='font-extrabold text-xl text-[#FF385C] font-poppins'>Airbnb</p>
+        </>:
+        <>
+         <img src={airbnbHelpLogo} alt="Airbnb logo" className='h-[35px] hover:cursor-pointer fill-logoColor'/>
+         <p className='font-extrabold text-xl text-black font-poppins'>Help Centre</p>
+        </>
+       } 
+        </div></Link>
+       {
+        location.pathname=="/" &&  scrollDirection=='down'?
+        <div className='grid grid-cols-[5rem_5rem_9rem] border border-gray-300 rounded-full py-3 pl-3 gap-3 hover:cursor-pointer'>
+        <div className='flex justify-between '>
+          <p className='font-semibold text-sm'>Anywhere</p>
+          <div className='w-[1px] h-6 bg-gray-300 '></div>
         </div>
+        <div className='flex justify-between '>
+          <p className='font-semibold text-sm'>Any week</p>
+          <div className='w-[1px] h-6 bg-gray-300'></div>
+        </div>
+        <div className='relative flex justify-between rounded-full items-center'>
+  <p className='font-roboto font-light text-normal text-gray-500'>Add guests</p>
+  <div className='absolute rounded-full bg-[#fc4264] w-[32px] h-[32px] right-2'>
+    <IoIosSearch className='absolute top-2 left-2 text-white text-lg' />
+  </div>
+</div>
+       </div>:
+        <div className='flex gap-7 font-medium font-roboto text-[1rem] items-center hover:cursor-pointer'>
+        <p className='text-black '>Stays</p>
+        <p className='text-gray-500'>Experiences</p>
+</div>
+       
+       
+}
         <div className='flex items-center justify-between gap-5 '>
-            <p className='font-roboto text-sm fot-medium hover:bg-gray-100 p-3 rounded-full hover:cursor-pointer'>Airbnb your home</p>
+          {
+            location.pathname==='/' &&   <p className='font-roboto text-sm fot-medium hover:bg-gray-100 p-3 rounded-full hover:cursor-pointer'>Airbnb your home</p>
+          }
             <img src={globe} alt="globe" className='w-[16px] h-[16px] hover:cursor-pointer'/>
             <div className='rounded-full border border-gray-200 relative flex justify-around items-center p-2 gap-4 hover:cursor-pointer'>
             <GiHamburgerMenu />
@@ -30,11 +103,12 @@ const Header = () => {
 
        
       </div>
-     {
-      location.pathname==='/' &&  <div className='w-11/12 sm:w-7/12 h-[65px] border border-gray-200 shadow-lg rounded-full mx-auto mt-3 grid grid-cols-3 '>
-      <div className='flex flex-col justify-center pl-4 sm:pl-9 rounded-full hover:bg-gray-100 cursor-pointer group w-[280px]'>
+     { 
+      location.pathname==='/' ? <div className='w-11/12 sm:w-7/12 h-[65px] border border-gray-200 shadow-lg rounded-full mx-auto mt-3 grid grid-cols-3 '>
+      <div className="flex flex-col justify-center pl-4 sm:pl-9 rounded-full hover:bg-gray-100 cursor-pointer group sm:w-[280px] w-full">
         <p className='text-sm sm:text-xs  font-medium pl-2'>Where</p>
-        <input type="text" placeholder='Search destinations' className='text-gray-500 group-hover:bg-gray-100 rounded-full focus:outline-none pl-2'/>
+        <input type="text" placeholder='Search destinations' className='text-gray-500 group-hover:bg-gray-100 rounded-full focus:outline-none pl-2'
+        aria-label="Search destinations"/>
       </div>
       
       
@@ -67,9 +141,9 @@ const Header = () => {
 
 
       
-    </div>
+    </div>:<></>
      }
-    <hr className='mt-5' />
+    { location.pathname==='/' && <hr className='mt-5' />}
     </>
   )
 }
