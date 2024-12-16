@@ -12,7 +12,7 @@ export default {
         openSans: ['Open Sans', 'sans-serif'],
       },
       colors:{
-        BgFooter:'#F7F7F7'
+        BgFooter:'#F7F7F7',
       }
     },
   },

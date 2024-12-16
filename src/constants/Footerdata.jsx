@@ -1,14 +1,30 @@
-export const Support=[
-    'Help Centre','AirCover','Anti-discrimination','Disability support','Cancellation options','Report neighbourhood concern'
-]
-
-export const Hosting=[
-    'Airbnb your home','AirCover for Hosts','Hosting resources','Community forum','Hosting responsibly','Join a free Hosting class','Find a co‑host'
-]
-
-export const Airbnb=[
-    'Newsroom','New features','Careers','Investors','Airbnb.org emergency stays'
-]
+export const Support = [
+    { name: 'Help Centre', route: '/help-centre' },
+    { name: 'AirCover', route: '/aircover' },
+    { name: 'Anti-discrimination', route: '/anti-discrimination' },
+    { name: 'Disability support', route: '/disability-support' },
+    { name: 'Cancellation options', route: '/cancellation-options' },
+    { name: 'Report neighbourhood concern', route: '/report-neighbourhood-concern' },
+  ];
+  
+  export const Hosting = [
+    { name: 'Airbnb your home', route: '/airbnb-your-home' },
+    { name: 'AirCover for Hosts', route: '/aircover-for-hosts' },
+    { name: 'Hosting resources', route: '/hosting-resources' },
+    { name: 'Community forum', route: '/community-forum' },
+    { name: 'Hosting responsibly', route: '/hosting-responsibly' },
+    { name: 'Join a free Hosting class', route: '/join-a-free-hosting-class' },
+    { name: 'Find a co‑host', route: '/find-a-co-host' },
+  ];
+  
+  export const Airbnb = [
+    { name: 'Newsroom', route: '/newsroom' },
+    { name: 'New features', route: '/new-features' },
+    { name: 'Careers', route: '/careers' },
+    { name: 'Investors', route: '/investors' },
+    { name: 'Airbnb.org emergency stays', route: '/airbnb-org-emergency-stays' },
+  ];
+  
 
 export const bottom=[
     'Privacy','Terms','Sitemap','company details'

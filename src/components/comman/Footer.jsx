@@ -3,13 +3,14 @@ import { Support } from '../../constants/Footerdata'
 import { Hosting } from '../../constants/Footerdata'
 import { Airbnb } from '../../constants/Footerdata'
 import { bottom } from '../../constants/Footerdata'
+import  {Link}  from 'react-router-dom'
 import globe from '../../assets/globe.svg'
 import twitter from '../../assets/twitter.svg'
 import insta from '../../assets/insta.svg'
 import fb from '../../assets/fb.svg'
 const Footer = () => {
   return (
-    <div className='bg-BgFooter'>
+    <div className='bg-BgFooter '>
     <div className='w-11/12 mx-auto  '>
     <div className='grid sm:grid-cols-3 grid-cols-1 pt-6'>
     <div >
@@ -17,11 +18,12 @@ const Footer = () => {
         <ul>
             {
                 Support.map((item, index)=>(
-                    <li key={index} className='mb-3 text-sm font-poppins hover:underline hover:cursor-pointer'>
+                    <Link to={item.route}  key={index}>
+                    <li className='mb-3 text-sm font-poppins hover:underline hover:cursor-pointer'>
                         {
-                            item
+                            item.name
                         }
-                    </li>
+                    </li></Link>
                 ))
             }
         </ul>
@@ -32,11 +34,12 @@ const Footer = () => {
         <ul>
             {
                 Hosting.map((item, index)=>(
-                    <li key={index} className='mb-3 text-sm font-poppins hover:underline hover:cursor-pointer'>
+                   <Link to={item.route} key={index} >
+                    <li className='mb-3 text-sm font-poppins hover:underline hover:cursor-pointer'>
                         {
-                            item
+                            item.name
                         }
-                    </li>
+                    </li></Link>
                 ))
             }
         </ul>
@@ -47,11 +50,12 @@ const Footer = () => {
         <ul>
             {
                 Airbnb.map((item, index)=>(
-                    <li key={index} className='mb-3 text-sm font-poppins hover:underline hover:cursor-pointer'>
+                   <Link to={item.route}  key={index}>
+                    <li className='mb-3 text-sm font-poppins hover:underline hover:cursor-pointer'>
                         {
-                            item
+                            item.name
                         }
-                    </li>
+                    </li></Link>
                 ))
             }
         </ul>
@@ -63,7 +67,7 @@ const Footer = () => {
       <hr className='my-5'/>
       <div className='flex justify-between mb-6'>
         <div className='flex justify-center items-center '>
-            <p className='mr-3'>© 2024 Airbnb, Inc.</p>
+            <p className='mr-3'>© 2024 Airbnb,Inc.</p>
             <ul className='flex '>
                 {
                     bottom.map((item,index)=>(

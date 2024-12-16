@@ -5,13 +5,15 @@ import globe from '../../assets/globe.svg'
 import { GiHamburgerMenu } from "react-icons/gi";
 import { IoIosSearch } from "react-icons/io";
 import { FaSearch } from "react-icons/fa";
+import { Link,useLocation } from 'react-router-dom';
 
 const Header = () => {
-  // const [selected, setSelected]=useState(true);
+ const location=useLocation();
+
   return (
     <>
       <div className="hidden sm:flex sm:justify-between sm:w-11/12 sm:mx-auto sm:p-4" >
-      <img src={logo} alt="Airbnb logo" className='w-[100px] h-[30px] hover:cursor-pointer'/>
+      <Link to="/"><img src={logo} alt="Airbnb logo" className='w-[100px] h-[30px] hover:cursor-pointer'/></Link>
         <div className='flex gap-7 font-medium font-roboto text-[1rem] items-center hover:cursor-pointer'>
                 <p className='text-black '>Stays</p>
                 <p className='text-gray-500'>Experiences</p>
@@ -28,7 +30,8 @@ const Header = () => {
 
        
       </div>
-      <div className='w-11/12 sm:w-7/12 h-[65px] border border-gray-200 shadow-lg rounded-full mx-auto mt-3 grid grid-cols-3 '>
+     {
+      location.pathname==='/' &&  <div className='w-11/12 sm:w-7/12 h-[65px] border border-gray-200 shadow-lg rounded-full mx-auto mt-3 grid grid-cols-3 '>
       <div className='flex flex-col justify-center pl-4 sm:pl-9 rounded-full hover:bg-gray-100 cursor-pointer group w-[280px]'>
         <p className='text-sm sm:text-xs  font-medium pl-2'>Where</p>
         <input type="text" placeholder='Search destinations' className='text-gray-500 group-hover:bg-gray-100 rounded-full focus:outline-none pl-2'/>
@@ -65,6 +68,7 @@ const Header = () => {
 
       
     </div>
+     }
     <hr className='mt-5' />
     </>
   )

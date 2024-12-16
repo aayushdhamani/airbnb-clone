@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import {categoryData} from '../../constants/Footerdata'
+// import { useLocation } from 'react-router-dom'
 
 const UpperFooter = () => {
     const [activeCategory,setActiveCategory]=useState("Popular")
