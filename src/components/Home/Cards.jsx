@@ -7,7 +7,7 @@ const Cards = ({data}) => {
   return (
     <>
     <div>
-    <div className='w-[320px] h-[310px] bg-gray-500 rounded-2xl relative'>
+    <div className='w-[320px] h-[310px] bg-gray-500 rounded-2xl relative hover:cursor-pointer'>
         <img src={image} className='w-[100%] h-[100%] rounded-2xl' /> 
         {Live?<div className='absolute top-4 left-4 bg-[#CBC7C4] rounded-full cursor-pointer'>
           <p className='px-4 py-1 font-medium'>Live</p>

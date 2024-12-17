@@ -17,7 +17,7 @@ const Home = () => {
         <div className='flex flex-wrap mt-8 gap-6 '>
           {
             pathname==='/TreeHouses'? HomeCard?.map((card)=>(
-              <Cards key={card.id} data={card}/>
+              <Cards key={card.id} data={card} />
           )): 
             TreeHouses?.map((card)=>(
               <CustomCards key={card.id} data={card}/>

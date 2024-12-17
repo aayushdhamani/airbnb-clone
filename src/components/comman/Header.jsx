@@ -22,10 +22,11 @@ const Header = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
  
-
+  console.log("scroll",scrollDirection);
+  console.log("Y",window.scrollY)
   return (
     <>
-      <div className="hidden sm:flex sm:justify-between sm:w-11/12 sm:mx-auto sm:p-4 bg-white sticky top-0 z-10"  ref={headerRef}>
+      <div className="hidden sm:flex sm:justify-between sm:w-11/12 sm:mx-auto sm:p-4 bg-white sticky top-0 z-10"  >
       <Link to="/"><div className='flex justify-center items-center text-xl '>
        {
         location.pathname==='/'?<>
@@ -40,7 +41,7 @@ const Header = () => {
         </div></Link>
        {
         location.pathname=="/" &&  scrollDirection=='down'?
-        <div className='grid grid-cols-[5rem_5rem_9rem] border border-gray-300 rounded-full py-3 pl-3 gap-3 hover:cursor-pointer'>
+        <div className=' short-search animate-slide-in-up grid grid-cols-[5rem_5rem_9rem] border border-gray-300 rounded-full py-3 pl-3 gap-3 hover:cursor-pointer'>
         <div className='flex justify-between '>
           <p className='font-semibold text-sm'>Anywhere</p>
           <div className='w-[1px] h-6 bg-gray-300 '></div>
@@ -78,7 +79,7 @@ const Header = () => {
        
       </div>
      { 
-      location.pathname==='/' ? <div className='w-11/12 sm:w-7/12 h-[65px] border border-gray-200 shadow-lg rounded-full mx-auto mt-3 grid grid-cols-3 '>
+      location.pathname==='/' && scrollDirection=='up' ? <div className={` w-11/12 sm:w-7/12 h-[65px] border border-gray-200 shadow-lg rounded-full mx-auto mt-3 grid grid-cols-3 ${window.scrollY?'long-search animate-slide-in-down':''}`}>
       <div className="flex flex-col justify-center pl-4 sm:pl-9 rounded-full hover:bg-gray-100 cursor-pointer group sm:w-[280px] w-full">
         <p className='text-sm sm:text-xs  font-medium pl-2'>Where</p>
         <input type="text" placeholder='Search destinations' className='text-gray-500 group-hover:bg-gray-100 rounded-full focus:outline-none pl-2'

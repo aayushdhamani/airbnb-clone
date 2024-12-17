@@ -1,13 +1,15 @@
 import React from 'react'
 import { GoHeart } from "react-icons/go";
 import { FaStar } from "react-icons/fa";
+import { Link } from 'react-router-dom'
 const CustomCards = ({ data }) => {
 
-    const { dates, distance, imageUrl, isGuestFavourite, location, price ,rating } = data
+    const { dates, distance, imageUrl, isGuestFavourite, location, price ,rating ,route} = data
+    console.log("route",route);
     return (
         <>
-            <div>
-                <div className='w-[330px] h-[310px] bg-gray-500 rounded-2xl relative'>
+            <Link to={route}>
+                <div className='w-[330px] h-[310px] bg-gray-500 rounded-2xl relative hover:cursor-pointer'>
                     <img src={imageUrl} className='w-[100%] h-[100%] rounded-2xl object-cover' />
                     {isGuestFavourite ? <div className='absolute top-4 left-4 bg-white rounded-full cursor-pointer'>
                         <p className='px-3 py-1 font-medium'>Guest favourite</p>
@@ -31,7 +33,7 @@ const CustomCards = ({ data }) => {
                     <p ><span className='font-medium'>{price}</span> night</p>
                     
                 </div>
-            </div>
+            </Link>
         </>
     )
 }
