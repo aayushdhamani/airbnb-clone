@@ -9,44 +9,18 @@ import { FaSearch } from "react-icons/fa";
 import { Link,useLocation } from 'react-router-dom';
 
 const Header = () => {
-  const [headerHeight, setHeaderHeight] = useState(100); // Default height
   const [scrollDirection, setScrollDirection] = useState("up");
-  const lastScrollY = useRef(0); // To store the last scroll position
-  const headerRef = useRef(null); // To reference the header element
- const location=useLocation();
+  const headerRef = useRef(null);
+  const location = useLocation();
 
- console.log("headerHeight",headerHeight);
- console.log("scrollDirection",scrollDirection);
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrollDirection(window.scrollY > 0 ? "down" : "up");
+    };
 
- useEffect(() => {
-  const handleScroll = () => {
-    const currentScrollY = window.scrollY;
-
-    // Determine scroll direction
-    if (currentScrollY > lastScrollY.current) {
-      setScrollDirection("down");
-      setHeaderHeight((prevHeight) => Math.max(prevHeight - 5, 50)); // Decrease height, min 50px
-    } else {
-      setScrollDirection("up");
-      setHeaderHeight((prevHeight) => Math.min(prevHeight + 5, 100)); // Increase height, max 100px
-    }
-
-    lastScrollY.current = currentScrollY; // Update the last scroll position
-  };
-
-  window.addEventListener("scroll", handleScroll);
-
-  return () => {
-    window.removeEventListener("scroll", handleScroll);
-  };
-}, []);
-
-useEffect(() => {
-  if (headerRef.current) {
-    const initialHeight = headerRef.current.getBoundingClientRect().height;
-    setHeaderHeight(initialHeight); // Set initial height dynamically
-  }
-}, []);
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
  
 
   return (
