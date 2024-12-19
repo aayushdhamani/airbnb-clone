@@ -5,7 +5,6 @@ import { Link } from 'react-router-dom'
 const CustomCards = ({ data }) => {
 
     const { dates, distance, imageUrl, isGuestFavourite, location, price ,rating ,route} = data
-    console.log("route",route);
     return (
         <>
             <Link to={route}>

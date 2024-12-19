@@ -22,11 +22,10 @@ const Header = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
  
-  console.log("scroll",scrollDirection);
-  console.log("Y",window.scrollY)
+
   return (
     <>
-      <div className="hidden sm:flex sm:justify-between sm:w-11/12 sm:mx-auto sm:p-4 bg-white sticky top-0 z-10"  >
+      <div className={`hidden sm:flex sm:justify-between sm:w-11/12 sm:mx-auto sm:p-4 bg-white ${location.pathname==='/'?'sticky top-0 z-10':''} `}  >
       <Link to="/"><div className='flex justify-center items-center text-xl '>
        {
         location.pathname==='/'?<>
@@ -40,7 +39,7 @@ const Header = () => {
        } 
         </div></Link>
        {
-        location.pathname=="/" &&  scrollDirection=='down'?
+        location.pathname=="/"  &&  scrollDirection=='down'?
         <div className=' short-search animate-slide-in-up grid grid-cols-[5rem_5rem_9rem] border border-gray-300 rounded-full py-3 pl-3 gap-3 hover:cursor-pointer'>
         <div className='flex justify-between '>
           <p className='font-semibold text-sm'>Anywhere</p>
